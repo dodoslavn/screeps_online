@@ -1,0 +1,169 @@
+body
+	{
+	background-color: #252525;
+	color: white;
+	}
+
+body div.header
+	{
+	height: 100px;
+	background-color: black;
+	color: white;
+	}
+	
+a   { color: white; }
+a:hover   { color: #ffe799; }
+
+body div.header div.head
+	{
+	margin-right: auto;
+	margin-left: auto;
+	font-size: 20px;
+	width: 1100px;
+	height: 100px;
+	background-color: black;
+	}
+	
+body div.header div.head div.logo
+	{
+	font-size: 35px;
+	width: 440px;
+	height: 90px;
+	float: left;
+	text-align: center;
+	font-family: Courier;
+	background: black url('https://screeps.online/logo.png') left center no-repeat;
+	}
+	
+body div.header div.head div.panel
+	{
+	padding-top: 60px;
+	font-size: 20px;
+	width: 600px;
+	float: right;
+	background-color: black;
+	text-align: left;
+	font-family: Verdana;
+	}
+	
+
+body div.header div.head div.panel a
+	{
+	margin-right: 50px;
+	text-decoration: none;
+	color: white;
+	}	
+
+body div.header div.head div.panel a:hover
+	{
+	margin-right: 50px;
+	color: #ffe799;
+	text-decoration: none;
+	}
+
+body div.container
+	{
+	width: 1000px;
+	margin-right: auto;
+	margin-left: auto;
+	}
+	
+body div.container h1
+	{
+	text-align: center;
+	}
+	
+body div.container table.server_list
+	{
+	width: 100%;
+	}
+	
+body div.container table.server_list tbody tr th
+	{
+	text-align: center;
+	font-family: Palatino;
+	padding-bottom: 10px;
+	}
+	
+body div.container table.server_list tbody tr td
+	{
+	text-align: center;
+	border: 1px solid #171717;
+	padding: 3px;
+	background-color: #222;
+	}
+	
+body div.container div.footer
+	{
+	text-align: center;
+	padding-top: 50px;
+	color: #404040;
+	}
+
+
+body div.container h3
+	{
+	color: #ffe799;
+	}
+
+body div.container h4
+        {
+        color: #ffe799;
+        }
+
+body div.container p 
+        {
+	font-family: Courier;
+        }
+
+body div.container h1 
+        {
+        font-family: Times New Roman; 
+        }
+
+form table.login input
+    {
+    background-color: #303030;
+    color: white;
+    width: 400px;
+    height: 40px;
+    border-color: black;
+    font-size: 32px;
+    }
+    
+body div.container form table.login
+    {
+    text-align:center;
+    font-family: Times New Roman;
+    font-size: 22px;
+    width: 600px;
+    margin-left: 200px;
+    }
+    
+body div.container form table.login tr td input:hover
+    {
+    background-color: #383838;
+    color: #ffe799;
+    }
+    
+body div.container form table.login tr td input
+    {
+    border-color: black;
+    }
+    
+body div.container form table.login tr td
+    {
+    text-align: left;
+    }
+    
+a.server
+    {
+    text-decoration: none;
+    color: white;
+    }
+    
+a.server:hover
+    {
+    text-decoration: underline;
+    color: #ffe799;
+    }
