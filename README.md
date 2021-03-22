@@ -7,6 +7,7 @@ crontab
 
 
 SQL
+
 CREATE TABLE `server_availability` (
  `id_availability` int(3) NOT NULL AUTO_INCREMENT,
  `server_id` int(3) NOT NULL,
