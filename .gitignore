@@ -1,0 +1,23 @@
+# Configuration
+config/env.php
+
+# Storage
+/storage/logs/*.log
+/storage/sessions/*
+!storage/logs/.gitkeep
+!storage/sessions/.gitkeep
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test coverage
+/coverage/
+.phpunit.result.cache
