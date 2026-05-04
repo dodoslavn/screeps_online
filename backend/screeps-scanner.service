@@ -1,0 +1,22 @@
+[Unit]
+Description=Screeps Server Scanner
+After=network.target mysql.service
+
+[Service]
+Type=oneshot
+User=www-data
+Group=www-data
+WorkingDirectory=/home/dodanek/screeps_online/backend
+ExecStart=/usr/bin/php /home/dodanek/screeps_online/backend/scan.php
+StandardOutput=append:/home/dodanek/screeps_online/storage/logs/scan.log
+StandardError=append:/home/dodanek/screeps_online/storage/logs/scan.log
+
+# Security hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/home/dodanek/screeps_online/storage/logs
+
+[Install]
+WantedBy=multi-user.target

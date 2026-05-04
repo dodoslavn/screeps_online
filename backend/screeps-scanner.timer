@@ -1,0 +1,14 @@
+[Unit]
+Description=Screeps Server Scanner Timer
+Requires=screeps-scanner.service
+
+[Timer]
+# Run every minute
+OnCalendar=*:0/1
+# Run immediately if system was off during scheduled time
+Persistent=true
+# Add small random delay to avoid thundering herd
+RandomizedDelaySec=10
+
+[Install]
+WantedBy=timers.target
