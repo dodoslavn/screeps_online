@@ -27,18 +27,8 @@ return [
     // Site Information
     'site' => [
         'author' => 'Dodoslav Novák',
-        'email' => 'screeps@dodoslav.eu',
+        'email' => 'screeps@dodoslav.eu',  // Contact email (displayed on site)
         'year' => '2019',
-    ],
-
-    // Mail Configuration (optional - for future features)
-    'mail' => [
-        'host' => 'smtp.dodoslav.eu',
-        'port' => 587,
-        'username' => 'screeps@dodoslav.eu',
-        'password' => 'your_mail_password',
-        'from_email' => 'screeps@dodoslav.eu',
-        'from_name' => 'Screeps Server List',
     ],
 
     // Session Configuration
