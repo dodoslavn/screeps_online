@@ -277,6 +277,11 @@ form textarea {
     transition: all 0.3s ease;
 }
 
+/* Override width for server input wrapper */
+.server-input-wrapper input[type="text"] {
+    width: 250px !important;
+}
+
 form input[type="text"]:focus,
 form input[type="password"]:focus,
 form input[type="email"]:focus,
