@@ -72,7 +72,7 @@ $account = '<a style="color: #ffe799;" href="/account" >Log in</a>';
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
 	<meta name="description" content="Create account screeps.dodoslav.eu" >
 	<meta name="keywords" content="screeps private server community create account" >
-	<meta name="author" content="Dodoslav Novák" >
+	<meta name="author" content="dodoslavn" >
 	<link rel="stylesheet" type="text/css" href="/default.css" media="screen" >
 	<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
 	<title>Add account - Screeps private server list</title>

@@ -42,7 +42,7 @@ function site_footer() {
     $year = config('site.year', date('Y'));
     $timezone = config('app.timezone', 'UTC');
 
-    return 'Dodoslav Novák | ' . escape_html($email) . ' | PHP & MariaDB | ' . escape_html($year) . ' | Timezone ' . escape_html($timezone);
+    return 'dodoslavn | ' . escape_html($email) . ' | PHP & MariaDB | ' . escape_html($year) . ' | Timezone ' . escape_html($timezone);
 }
 
 /**
