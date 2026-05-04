@@ -26,7 +26,6 @@ return [
 
     // Site Information
     'site' => [
-        'author' => 'Dodoslav Novák',
         'email' => 'screeps@dodoslav.eu',  // Contact email (displayed on site)
         'year' => '2019',
     ],

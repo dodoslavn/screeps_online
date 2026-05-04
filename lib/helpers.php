@@ -38,12 +38,11 @@ function config($key, $default = null) {
  * @return string
  */
 function site_footer() {
-    $author = config('site.author', 'Anonymous');
     $email = config('site.email', '');
     $year = config('site.year', date('Y'));
     $timezone = config('app.timezone', 'UTC');
 
-    return escape_html($author) . ' | ' . escape_html($email) . ' | PHP & MySQL | ' . escape_html($year) . ' | Timezone ' . escape_html($timezone);
+    return 'Dodoslav Novák | ' . escape_html($email) . ' | PHP & MySQL | ' . escape_html($year) . ' | Timezone ' . escape_html($timezone);
 }
 
 /**

@@ -17,7 +17,7 @@ if (empty($_SESSION['account'])) {
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
 	<meta name="description" content="About screeps.dodoslav.eu community private server list" >
 	<meta name="keywords" content="screeps private server community about" >
-	<meta name="author" content="<?= config('site.author') ?>" >
+	<meta name="author" content="Dodoslav Novák" >
 	<link rel="stylesheet" type="text/css" href="/default.css" media="screen" >
 	<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
 	<title>About - Screeps private server list</title>

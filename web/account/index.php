@@ -41,7 +41,7 @@ $account = '<a href="/account">Account</a>';
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
 	<meta name="description" content="My account" >
 	<meta name="keywords" content="screeps private community server account" >
-	<meta name="author" content="<?= config('site.author') ?>" >
+	<meta name="author" content="Dodoslav Novák" >
 	<link rel="stylesheet" type="text/css" href="/default.css" media="screen" >
 	<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
 	<title>Account - Screeps private server list</title>
