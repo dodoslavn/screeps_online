@@ -87,13 +87,10 @@ if (!empty($msg)) {
 ?>
 
 	<h3><br>Enter domain or IP with port of your Screeps private server:</h3>
+	<p style="text-align: center; color: #888;">Format: <code>example.com:21025</code> or <code>192.168.1.1:21025</code></p>
 	<form action="" method="post" class="add-server-form">
 		<input type="hidden" name="csrf_token" value="<?= escape_html(generate_csrf_token()) ?>">
-		<div class="server-input-wrapper">
-			<span class="server-prefix">http://</span>
-			<input type="text" value="screeps.com:21025" name="server" placeholder="example.com:21025">
-			<span class="server-suffix">/</span>
-		</div>
+		<input type="text" name="server" placeholder="example.com:21025" class="server-input">
 		<input type="submit" value="Add server">
 	</form>
 	<div class="footer"><?= site_footer() ?></div>

@@ -227,72 +227,31 @@ form textarea:focus {
 
 /* Add Server Form - Specific styles AFTER general form styles */
 .add-server-form {
-    max-width: 700px;
+    max-width: 500px;
     margin: 2rem auto;
     text-align: center;
 }
 
-.server-input-wrapper {
-    display: inline-flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-    margin: 1.5rem auto;
-    background: #2a2a2a;
-    border: 2px solid #3a3a3a;
-    border-radius: 6px;
-    padding: 0;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    max-width: fit-content;
-    white-space: nowrap;
-}
-
-.server-input-wrapper:focus-within {
-    border-color: #ffe799;
-    box-shadow: 0 0 0 3px rgba(255, 231, 153, 0.1);
-}
-
-.server-prefix,
-.server-suffix {
-    padding: 0.8rem 1rem;
-    color: #888;
-    font-family: 'Courier New', monospace;
-    font-weight: 600;
-    background: #222;
-    user-select: none;
-    white-space: nowrap;
-    flex-shrink: 0;
-    display: inline-block;
-}
-
-.server-input-wrapper input[type="text"] {
-    width: 300px !important;
-    min-width: 300px !important;
-    max-width: 300px !important;
-    flex: 0 0 300px !important;
-    flex-shrink: 0 !important;
-    border: none !important;
-    border-radius: 0 !important;
-    background: #2a2a2a !important;
-    padding: 0.8rem !important;
-    margin: 0 !important;
-    display: inline-block !important;
-}
-
-.server-input-wrapper input[type="text"]:focus {
-    border: none !important;
-    box-shadow: none !important;
-    background: #2a2a2a !important;
+.add-server-form .server-input {
+    width: 100% !important;
+    max-width: 400px !important;
+    margin: 1rem auto !important;
+    text-align: center !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 1.1rem !important;
 }
 
 .add-server-form input[type="submit"] {
     margin-top: 1rem;
     min-width: 200px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+}
+
+.add-server-form code {
+    background: #2a2a2a;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    color: #ffe799;
+    font-family: 'Courier New', monospace;
 }
 
 form input[type="submit"],
