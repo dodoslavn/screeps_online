@@ -234,6 +234,7 @@ form textarea:focus {
 
 .server-input-wrapper {
     display: inline-flex;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
     gap: 0;
@@ -245,6 +246,7 @@ form textarea:focus {
     overflow: hidden;
     transition: all 0.3s ease;
     max-width: fit-content;
+    white-space: nowrap;
 }
 
 .server-input-wrapper:focus-within {
@@ -261,16 +263,22 @@ form textarea:focus {
     background: #222;
     user-select: none;
     white-space: nowrap;
+    flex-shrink: 0;
+    display: inline-block;
 }
 
 .server-input-wrapper input[type="text"] {
     width: 300px !important;
-    flex: none !important;
+    min-width: 300px !important;
+    max-width: 300px !important;
+    flex: 0 0 300px !important;
+    flex-shrink: 0 !important;
     border: none !important;
     border-radius: 0 !important;
     background: #2a2a2a !important;
     padding: 0.8rem !important;
     margin: 0 !important;
+    display: inline-block !important;
 }
 
 .server-input-wrapper input[type="text"]:focus {
