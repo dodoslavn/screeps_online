@@ -1,31 +1,31 @@
-<?
+<?php
 session_start();
 
 date_default_timezone_set("Europe/Bratislava");
 
-$ini = parse_ini_file("../backend/mysql.ini");
-$conn = mysqli_connect($ini['host'], $ini['user'], $ini['password'], $ini['database']);
-if (!$conn) die("database");
+require_once __DIR__ . '/../lib/database.php';
+require_once __DIR__ . '/../lib/security.php';
+require_once __DIR__ . '/../lib/helpers.php';
 
+$pdo = db_connect();
 
-if (!empty($_POST['server']))
-	{
-	$_POST['server'] = mysqli_real_escape_string($conn, $_POST['server']);
-	mysqli_query($conn, "INSERT INTO server_list(id_server, address) VALUES (NULL, '".$_POST['server']."')");
-	}
+// Set account link
+if (empty($_SESSION['account'])) {
+    $account = '<a href="/account/login">Log in</a>';
+} else {
+    $account = '<a href="/account">Account</a>';
+}
 
-if (empty($_SESSION['account']))
-    { $account = '<a href="/account/login">Log in</a>'; }
-else 
-    { $account = '<a href="/account">Account</a>'; }
+// Get flash message
+$flash = get_flash();
 ?>
 
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
 	<meta name="description" content="screeps priavte community server list" >
-	<meta name="keywords" content="screeps private community server list game" > 
-	<meta name="author" content="Dodoslav Novák" > 
+	<meta name="keywords" content="screeps private community server list game" >
+	<meta name="author" content="dodoslavn" >
 	<link rel="stylesheet" type="text/css" href="default.css" media="screen" >
 	<link rel="shortcut icon" type="image/png" href="favicon.png"/>
 	<title>Screeps private server list</title>
@@ -36,13 +36,13 @@ else
 <div class="header">
 	<div class="head">
 		<div class="logo">
-			
+
 		</div>
 		<div class="panel">
 			<a style="color: #ffe799;" href="/" >Server list</a>
 			<a href="/add" >Add server</a>
 			<a href="/about" >About</a>
-			<? echo $account; ?>
+			<?= $account ?>
 		</div>
 	</div>
 </div>
@@ -50,6 +50,13 @@ else
 <div class="container">
 
 	<h1>Screeps - community private server list</h1>
+
+<?php
+if ($flash) {
+    $color = $flash['type'] === 'error' ? '#aa1111' : '#11aa11';
+    echo '<div style="width: 50%; margin:0 auto 0 auto; padding: 5px; text-align: center; background-color: ' . $color . '; border: solid 1px #000"> ' . escape_html($flash['message']) . ' </div> <br>';
+}
+?>
 
 	<table class="server_list">
 		<tr>
@@ -62,38 +69,38 @@ else
 			<th>Availability</th>
 			<th></th>
 		</tr>
-			<?
-			$sql = mysqli_query($conn, "SELECT * FROM server_info JOIN server_list ON server_list.id_server = server_info.server_id WHERE last_check > DATE(NOW() - INTERVAL 3 DAY) ORDER BY players_current DESC");
-			while($row = mysqli_fetch_array($sql))
-				{
-				if ( $row['online'] == 1  ) $color = "green";	
-				else $color = "red";
+<?php
+$stmt = $pdo->prepare("SELECT si.*, sl.address
+                       FROM server_info si
+                       JOIN server_list sl ON sl.id_server = si.server_id
+                       WHERE si.last_check > DATE(NOW() - INTERVAL 3 DAY)
+                       ORDER BY si.players_current DESC");
+$stmt->execute();
 
-				$array = explode(":", $row['address']);
-				$address = $array[0];
-				$port = $array[1];
-				
-				$row['last_check'] = strtotime($row['last_check']);
-				$row['last_check'] = date('H:i:s d.m.Y', $row['last_check']);
-				
-				if ($row['availability'] == '') $row['availability'] = 0;
-				echo "<tr>";
-				echo "<td>".$row['name']."</td>";
-				echo "<td>".$address."</td>";
-				echo "<td>".$port."</td>";
-				#echo "<td>".$row['name']."</td>";
-				echo "<td style='background-color:".$color."'> </td>";
-				echo "<td>".$row['players_current']."</td>";
-				echo "<td>".$row['version']."</td>";
-				echo "<td>".$row['last_check']."</td>";
-				echo "<td>".$row['availability']."%</td>";
-				echo '<td><a class="server" href="/server/?server='.$address.':'.$port.'">Info</a></td>';
-				echo "</tr>";
-				} 
-			?>
+while ($row = $stmt->fetch()) {
+    $color = $row['online'] == 1 ? 'green' : 'red';
+    $parts = explode(':', $row['address']);
+    $address = $parts[0] ?? '';
+    $port = $parts[1] ?? '';
+    $lastCheck = date('H:i:s d.m.Y', strtotime($row['last_check']));
+    $availability = $row['availability'] ?? 0;
+
+    echo "<tr>";
+    echo "<td>" . escape_html($row['name']) . "</td>";
+    echo "<td>" . escape_html($address) . "</td>";
+    echo "<td>" . escape_html($port) . "</td>";
+    echo "<td style='background-color:" . $color . "'> </td>";
+    echo "<td>" . escape_html($row['players_current']) . "</td>";
+    echo "<td>" . escape_html($row['version']) . "</td>";
+    echo "<td>" . $lastCheck . "</td>";
+    echo "<td>" . escape_html($availability) . "%</td>";
+    echo '<td><a class="server" href="/server/?server=' . urlencode($address . ':' . $port) . '">Info</a></td>';
+    echo "</tr>";
+}
+?>
 	</table>
-	<div class="footer">Dodoslav Novák | screeps@fordo.sk | PHP & MySQL | 2019 | Timezone Europe/Bratislava</div>
+	<div class="footer"><?= site_footer() ?></div>
 </div>
- 
+
 </body>
 </html>

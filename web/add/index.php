@@ -1,57 +1,61 @@
-<?
+<?php
 session_start();
-$ini = parse_ini_file("../../backend/mysql.ini");
-$conn = mysqli_connect($ini['host'], $ini['user'], $ini['password'], $ini['database']);
-if (!$conn) die("database");
 
+require_once __DIR__ . '/../../lib/database.php';
+require_once __DIR__ . '/../../lib/security.php';
+require_once __DIR__ . '/../../lib/helpers.php';
 
-if (!empty($_POST['server']))
-	{
-	$_POST['server'] = mysqli_real_escape_string($conn, $_POST['server']);
+$msg = null;
+$msgType = 'error';
 
-	$array = explode(":", $_POST['server']);
-	$address = $array[0];	
-	$port = $array[1];	
-	$msg == "";
+// Handle server addition
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['server'])) {
+    // Verify CSRF token
+    if (!verify_csrf_token($_POST['csrf_token'] ?? '')) {
+        $msg = 'CSRF validation failed';
+    } else {
+        $serverAddress = trim($_POST['server']);
 
-	$check = true;
-	if (!is_numeric($port)) $check = false;
-	else
-		{ if (($port < 1000) or ($port > 50000)) $check = false; }
+        // Validate server address
+        if (!validate_server_address($serverAddress)) {
+            $msg = 'Error: Server was not added due to incorrect address format!';
+        } else {
+            // Check if server already exists
+            $pdo = db_connect();
+            $stmt = $pdo->prepare("SELECT COUNT(*) AS c FROM server_list WHERE address = ?");
+            $stmt->execute([$serverAddress]);
+            $result = $stmt->fetch();
 
-	if ( (!filter_var($address, FILTER_VALIDATE_IP)) and (!filter_var(gethostbyname($address), FILTER_VALIDATE_IP)) )
-		$check = false;
-	
+            if ($result['c'] != 0) {
+                $msg = 'Error: Server is already in database!';
+            } else {
+                // Add server to database
+                $stmt = $pdo->prepare("INSERT INTO server_list (address) VALUES (?)");
+                if ($stmt->execute([$serverAddress])) {
+                    $msg = 'Server added successfully!';
+                    $msgType = 'success';
+                } else {
+                    $msg = 'Error: Failed to add server!';
+                }
+            }
+        }
+    }
+}
 
-        if ($check == false)
-                $msg = '<div style="width: 50%; margin:0 auto 0 auto; padding: 5px; text-align: center; background-color: #aa1111; border: solid 1px red"> Error: Server was not added due to incorrect address format! </div>';
-	else
-		{
-		$sql = mysqli_query($conn, "SELECT COUNT(*) AS c FROM server_list WHERE address = '".$_POST['server']."'");
-		$sql = mysqli_fetch_array($sql);
-		if ( $sql['c'] != 0 ) 
-			{
-			$check = false;
-			$msg = '<div style="width: 50%; margin:0 auto 0 auto; padding: 5px; text-align: center; background-color: #aa1111; border: solid 1px red"> Error: Server is already in database! </div>';
-			}
-		}
-
-	if ($check != false )
-		mysqli_query($conn, "INSERT INTO server_list(id_server, address) VALUES (NULL, '".$_POST['server']."')");
-	}
-
-if (empty($_SESSION['account']))
-    { $account = '<a href="/account/login">Log in</a>'; }
-else  
-    { $account = '<a href="/account">Account</a>'; }
+// Set account link
+if (empty($_SESSION['account'])) {
+    $account = '<a href="/account/login">Log in</a>';
+} else {
+    $account = '<a href="/account">Account</a>';
+}
 ?>
 
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
 	<meta name="description" content="Add Screeps private community server into public list" >
-	<meta name="keywords" content="screeps private server community add server" > 
-	<meta name="author" content="Dodoslav Novák" > 
+	<meta name="keywords" content="screeps private server community add server" >
+	<meta name="author" content="dodoslavn" >
 	<link rel="stylesheet" type="text/css" href="/default.css" media="screen" >
 	<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
 	<title>Add Screeps server - Screeps private server list</title>
@@ -67,21 +71,28 @@ else
 			<a href="/" >Server list</a>
 			<a style="color: #ffe799;" href="/add" >Add server</a>
 			<a href="/about" >About</a>
-			<? echo $account; ?>
+			<?= $account ?>
 		</div>
 	</div>
 </div>
 
 <div class="container">
 	<h1>Add your Screeps private server into list:</h1>
-<? echo $msg; ?>
+
+<?php
+if (!empty($msg)) {
+    $color = $msgType === 'error' ? '#aa1111' : '#11aa11';
+    echo '<div style="width: 50%; margin:0 auto 0 auto; padding: 5px; text-align: center; background-color: ' . $color . '; border: solid 1px #000"> ' . escape_html($msg) . ' </div>';
+}
+?>
 
 	<h3><br>Enter domain or IP with port of your Screeps private server:</h3>
 	<form action="" method="post">
-		<center>http://<input type="text" value="screeps.com:21025" name="server">/ 
+		<input type="hidden" name="csrf_token" value="<?= escape_html(generate_csrf_token()) ?>">
+		<center>http://<input type="text" value="screeps.com:21025" name="server">/
 		<input type="submit" value="Add server"> </center>
 	</form>
-	<div class="footer">Dodoslav Novák | screeps@fordo.sk | PHP & MySQL | 2019 </div>
+	<div class="footer"><?= site_footer() ?></div>
 </div>
 
 
