@@ -201,6 +201,63 @@ form {
     margin: 2rem 0;
 }
 
+/* Add Server Form */
+.add-server-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+.server-input-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin: 1.5rem 0;
+    background: #2a2a2a;
+    border: 2px solid #3a3a3a;
+    border-radius: 6px;
+    padding: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.server-input-wrapper:focus-within {
+    border-color: #ffe799;
+    box-shadow: 0 0 0 3px rgba(255, 231, 153, 0.1);
+}
+
+.server-prefix,
+.server-suffix {
+    padding: 0.8rem;
+    color: #888;
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    background: #222;
+    user-select: none;
+}
+
+.server-input-wrapper input[type="text"] {
+    flex: 1;
+    border: none;
+    border-radius: 0;
+    background: #2a2a2a;
+    padding: 0.8rem;
+    margin: 0;
+    min-width: 200px;
+}
+
+.server-input-wrapper input[type="text"]:focus {
+    border: none;
+    box-shadow: none;
+    background: #2a2a2a;
+}
+
+.add-server-form input[type="submit"] {
+    margin-top: 1rem;
+    min-width: 200px;
+}
+
 form input[type="text"],
 form input[type="password"],
 form input[type="email"],
