@@ -203,23 +203,24 @@ form {
 
 /* Add Server Form */
 .add-server-form {
-    max-width: 600px;
+    max-width: 700px;
     margin: 2rem auto;
     text-align: center;
 }
 
 .server-input-wrapper {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0;
-    margin: 1.5rem 0;
+    margin: 1.5rem auto;
     background: #2a2a2a;
     border: 2px solid #3a3a3a;
     border-radius: 6px;
     padding: 0;
     overflow: hidden;
     transition: all 0.3s ease;
+    max-width: 500px;
 }
 
 .server-input-wrapper:focus-within {
@@ -229,22 +230,23 @@ form {
 
 .server-prefix,
 .server-suffix {
-    padding: 0.8rem;
+    padding: 0.8rem 1rem;
     color: #888;
     font-family: 'Courier New', monospace;
     font-weight: 600;
     background: #222;
     user-select: none;
+    white-space: nowrap;
 }
 
 .server-input-wrapper input[type="text"] {
-    flex: 1;
+    flex: 0 1 auto;
+    width: 250px;
     border: none;
     border-radius: 0;
     background: #2a2a2a;
     padding: 0.8rem;
     margin: 0;
-    min-width: 200px;
 }
 
 .server-input-wrapper input[type="text"]:focus {
@@ -256,6 +258,9 @@ form {
 .add-server-form input[type="submit"] {
     margin-top: 1rem;
     min-width: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 form input[type="text"],
