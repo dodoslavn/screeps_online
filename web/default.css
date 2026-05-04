@@ -201,7 +201,31 @@ form {
     margin: 2rem 0;
 }
 
-/* Add Server Form */
+form input[type="text"],
+form input[type="password"],
+form input[type="email"],
+form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    background: #2a2a2a;
+    border: 2px solid #3a3a3a;
+    border-radius: 6px;
+    color: #e0e0e0;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+form input[type="text"]:focus,
+form input[type="password"]:focus,
+form input[type="email"]:focus,
+form textarea:focus {
+    outline: none;
+    border-color: #ffe799;
+    background: #333;
+    box-shadow: 0 0 0 3px rgba(255, 231, 153, 0.1);
+}
+
+/* Add Server Form - Specific styles AFTER general form styles */
 .add-server-form {
     max-width: 700px;
     margin: 2rem auto;
@@ -220,7 +244,7 @@ form {
     padding: 0;
     overflow: hidden;
     transition: all 0.3s ease;
-    max-width: 500px;
+    max-width: fit-content;
 }
 
 .server-input-wrapper:focus-within {
@@ -240,19 +264,19 @@ form {
 }
 
 .server-input-wrapper input[type="text"] {
-    flex: 0 1 auto;
-    width: 250px;
-    border: none;
-    border-radius: 0;
-    background: #2a2a2a;
-    padding: 0.8rem;
-    margin: 0;
+    width: 300px !important;
+    flex: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    background: #2a2a2a !important;
+    padding: 0.8rem !important;
+    margin: 0 !important;
 }
 
 .server-input-wrapper input[type="text"]:focus {
-    border: none;
-    box-shadow: none;
-    background: #2a2a2a;
+    border: none !important;
+    box-shadow: none !important;
+    background: #2a2a2a !important;
 }
 
 .add-server-form input[type="submit"] {
@@ -261,35 +285,6 @@ form {
     display: block;
     margin-left: auto;
     margin-right: auto;
-}
-
-form input[type="text"],
-form input[type="password"],
-form input[type="email"],
-form textarea {
-    width: 100%;
-    padding: 0.8rem;
-    background: #2a2a2a;
-    border: 2px solid #3a3a3a;
-    border-radius: 6px;
-    color: #e0e0e0;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-}
-
-/* Override width for server input wrapper */
-.server-input-wrapper input[type="text"] {
-    width: 250px !important;
-}
-
-form input[type="text"]:focus,
-form input[type="password"]:focus,
-form input[type="email"]:focus,
-form textarea:focus {
-    outline: none;
-    border-color: #ffe799;
-    background: #333;
-    box-shadow: 0 0 0 3px rgba(255, 231, 153, 0.1);
 }
 
 form input[type="submit"],
