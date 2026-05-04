@@ -205,7 +205,6 @@ form input[type="text"],
 form input[type="password"],
 form input[type="email"],
 form textarea {
-    width: 100%;
     padding: 0.8rem;
     background: #2a2a2a;
     border: 2px solid #3a3a3a;
@@ -293,7 +292,8 @@ form button:hover {
 .login input[type="text"],
 .login input[type="password"],
 .login input[type="email"] {
-    width: 100%;
+    width: 400px;
+    max-width: 100%;
     margin-top: 0.3rem;
 }
 
