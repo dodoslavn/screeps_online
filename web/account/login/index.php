@@ -1,54 +1,59 @@
-<?
+<?php
 session_start();
-$ini = parse_ini_file("../../../backend/mysql.ini");
-$conn = mysqli_connect($ini['host'], $ini['user'], $ini['password'], $ini['database']);
-if (!$conn) die("database");
 
+require_once __DIR__ . '/../../../lib/database.php';
+require_once __DIR__ . '/../../../lib/auth.php';
+require_once __DIR__ . '/../../../lib/security.php';
+require_once __DIR__ . '/../../../lib/helpers.php';
 
-if (empty($_SESSION['account']))
-    { $account = '<a style="color: #ffe799;" href="/account" >Log in</a>'; }
-else 
-    { header("Location: /account"); }
+// Redirect if already logged in
+require_guest();
 
-    
-    
-if (! empty($_POST['submit']))
-    {
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
-    $password = mysqli_real_escape_string($conn, $_POST['password']);
-    
-    if (!empty($password) and !empty($username) )
-        {
-        $password = crypt($password,'screeps');
-        
-        $sql = mysqli_query($conn, "SELECT COUNT(*) AS c FROM users WHERE name = '".$username."' and password = '".$password."';" );
-	$sql = mysqli_fetch_array($sql);
-	if ($sql['c'] != 1)
-            $err = 'Wrong cedentials!';
-        else
-            {
-            $_SESSION['account'] = $username;
+$err = null;
+
+// Handle login form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['submit'])) {
+    // Verify CSRF token
+    if (!verify_csrf_token($_POST['csrf_token'] ?? '')) {
+        $err = 'CSRF validation failed';
+    } else {
+        $username = trim($_POST['username'] ?? '');
+        $password = $_POST['password'] ?? '';
+
+        if (empty($username) || empty($password)) {
+            $err = 'Empty credentials!';
+        } else {
+            // Get user from database
+            $pdo = db_connect();
+            $stmt = $pdo->prepare("SELECT * FROM users WHERE name = ?");
+            $stmt->execute([$username]);
+            $user = $stmt->fetch();
+
+            if ($user && verify_password($password, $user['password'])) {
+                // Login successful
+                $_SESSION['account'] = $user['name'];
+                regenerate_session();
+                redirect('/account', 'Login successful!', 'success');
+            } else {
+                $err = 'Wrong credentials!';
             }
         }
-    else
-        $err = "Empty credentials!";
-        
     }
-    
-    
+}
 
-if (empty($_SESSION['account']))
-    { $account = '<a style="color: #ffe799;" href="/account" >Log in</a>'; }
-else 
-    { header("Location: /account"); }
+// Set account link for nav
+$account = '<a style="color: #ffe799;" href="/account" >Log in</a>';
+
+// Get flash message if any
+$flash = get_flash();
 ?>
 
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
 	<meta name="description" content="Login into screeps.online" >
-	<meta name="keywords" content="screeps private server community login" > 
-	<meta name="author" content="Dodoslav Novák" > 
+	<meta name="keywords" content="screeps private server community login" >
+	<meta name="author" content="Dodoslav Novák" >
 	<link rel="stylesheet" type="text/css" href="/default.css" media="screen" >
 	<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
 	<title>Login - Screeps private server list</title>
@@ -62,20 +67,27 @@ else
 			<a href="/" >Server list</a>
 			<a href="/add" >Add server</a>
 			<a href="/about" >About</a>
-			<? echo $account; ?>
+			<?= $account ?>
 		</div>
 	</div>
 </div>
 <div class="container">
 	<h1>Log in</h1>
 
-<? 
-if (!empty($err))
-    echo '<div style="width: 50%; margin:0 auto 0 auto; padding: 5px; text-align: center; background-color: #aa1111; border: solid 1px red"> '.$err.' </div> <br>';
+<?php
+if (!empty($err)) {
+    echo '<div style="width: 50%; margin:0 auto 0 auto; padding: 5px; text-align: center; background-color: #aa1111; border: solid 1px red"> ' . escape_html($err) . ' </div> <br>';
+}
+
+if ($flash) {
+    $color = $flash['type'] === 'error' ? '#aa1111' : '#11aa11';
+    echo '<div style="width: 50%; margin:0 auto 0 auto; padding: 5px; text-align: center; background-color: ' . $color . '; border: solid 1px #000"> ' . escape_html($flash['message']) . ' </div> <br>';
+}
 ?>
-	
-	
+
+
 <form method="post" action="#">
+    <input type="hidden" name="csrf_token" value="<?= escape_html(generate_csrf_token()) ?>">
     <table class="login">
         <tr>
             <td>Username: </td>

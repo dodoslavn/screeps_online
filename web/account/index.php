@@ -1,29 +1,50 @@
-<?
+<?php
 session_start();
-$ini = parse_ini_file("../../backend/mysql.ini");
-$conn = mysqli_connect($ini['host'], $ini['user'], $ini['password'], $ini['database']);
-if (!$conn) die("database");
 
-if (!empty($_SESSION['account']))
-    { $account = '<a style="color: #ffe799;" href="/account" >Account</a>'; }
-else 
-    { header("Location: /account/login"); }
+date_default_timezone_set("Europe/Bratislava");
 
-$sql = mysqli_query($conn, "SELECT * FROM users WHERE name = '".$_SESSION['account']."'" );
-$sql = mysqli_fetch_array($sql);
-$email = $sql['email'];
-$id_user = $sql['id_user'];
+require_once __DIR__ . '/../../lib/database.php';
+require_once __DIR__ . '/../../lib/auth.php';
+require_once __DIR__ . '/../../lib/security.php';
+
+// Require authentication
+require_auth();
+
+$pdo = db_connect();
+
+// Get user info
+$stmt = $pdo->prepare("SELECT * FROM users WHERE name = ?");
+$stmt->execute([$_SESSION['account']]);
+$user = $stmt->fetch();
+
+if (!$user) {
+    $_SESSION = [];
+    session_destroy();
+    header("Location: /account/login");
+    exit;
+}
+
+// Get user's servers
+$stmt = $pdo->prepare("SELECT sl.address, si.name, si.online, si.players_current
+                       FROM server_list sl
+                       JOIN server_info si ON si.server_id = sl.id_server
+                       WHERE sl.user_id = ?
+                       ORDER BY si.players_current DESC");
+$stmt->execute([$user['id_user']]);
+$userServers = $stmt->fetchAll();
+
+$account = '<a href="/account">Account</a>';
 ?>
 
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
-	<meta name="description" content="add server to list screeps community private server list" >
-	<meta name="keywords" content="screeps private server community add server" > 
-	<meta name="author" content="Dodoslav Novák" > 
+	<meta name="description" content="My account" >
+	<meta name="keywords" content="screeps private community server account" >
+	<meta name="author" content="Dodoslav Novák" >
 	<link rel="stylesheet" type="text/css" href="/default.css" media="screen" >
 	<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
-	<title>About - Screeps private server list</title>
+	<title>Account - Screeps private server list</title>
 </head>
 <body>
 <div class="header">
@@ -34,39 +55,55 @@ $id_user = $sql['id_user'];
 			<a href="/" >Server list</a>
 			<a href="/add" >Add server</a>
 			<a href="/about" >About</a>
-			<a style="color: #ffe799;" href="/account" >Account</a>
+			<?= $account ?>
 		</div>
 	</div>
 </div>
 <div class="container">
-	<h1>Your account</h1>
+	<h1>Account</h1>
 
+	<h3>Username:</h3>
+	<p><?= escape_html($user['name']) ?></p>
 
+	<h3>Email:</h3>
+	<p><?= escape_html($user['email']) ?></p>
 
-    <br><br>
-	<h3>Account information:</h3>
-	<p>
-        Username:  <? echo $_SESSION['account']; ?><br>
-        Email: <? echo $email; ?>
-	</p>
-	
-    <h3>Claimed servers:</h3>
-	<p>
-<?
-$sql = mysqli_query($conn, "SELECT * FROM server_info JOIN server_list ON server_id = id_server WHERE user_id = '".$id_user."'" );
-while($row = mysqli_fetch_array($sql))
-    {
-    if ( empty($row['name']) )
-        echo '<a class="server" href="/server/?server='.$row["address"].'">'.$row['address'].'</a><br>';
-    else
-        echo '<a class="server" href="/server/?server='.$row["address"].'">'.$row['name']." (".$row['address'].")</a><br>";
-    
+	<h3>My servers:</h3>
+<?php
+if (count($userServers) > 0) {
+    echo '<table class="server_list">
+        <tr>
+            <th>Name</th>
+            <th colspan=2>Address</th>
+            <th>Online</th>
+            <th>Players</th>
+            <th></th>
+        </tr>';
+
+    foreach ($userServers as $server) {
+        $color = $server['online'] == 1 ? 'green' : 'red';
+        $parts = explode(':', $server['address']);
+        $address = $parts[0] ?? '';
+        $port = $parts[1] ?? '';
+
+        echo "<tr>";
+        echo "<td>" . escape_html($server['name']) . "</td>";
+        echo "<td>" . escape_html($address) . "</td>";
+        echo "<td>" . escape_html($port) . "</td>";
+        echo "<td style='background-color:" . $color . "'> </td>";
+        echo "<td>" . escape_html($server['players_current']) . "</td>";
+        echo '<td><a class="server" href="/server/?server=' . urlencode($address . ':' . $port) . '">Info</a></td>';
+        echo "</tr>";
     }
+
+    echo '</table>';
+} else {
+    echo '<p>You have not claimed any servers yet.</p>';
+}
 ?>
-	</p>
-	<p>Click <a href="/account/logout" alt="logout">here</a> to logout.</p>
 
-
+	<br><br>
+	<a href="/account/logout">Log out</a>
 
 	<div class="footer">Dodoslav Novák | screeps@fordo.sk | PHP & MySQL | 2019</div>
 </div>
