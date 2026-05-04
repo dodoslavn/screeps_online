@@ -232,8 +232,8 @@ form textarea:focus {
 }
 
 .add-server-form .server-input {
-    width: 100% !important;
-    max-width: 400px !important;
+    width: 400px !important;
+    max-width: 100% !important;
     margin: 1rem auto !important;
     text-align: center !important;
     font-family: 'Courier New', monospace !important;
