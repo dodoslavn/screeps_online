@@ -53,7 +53,7 @@ $flash = get_flash();
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
 	<meta name="description" content="Login into screeps.dodoslav.eu" >
 	<meta name="keywords" content="screeps private server community login" >
-	<meta name="author" content="Dodoslav Novák" >
+	<meta name="author" content="<?= config('site.author') ?>" >
 	<link rel="stylesheet" type="text/css" href="/default.css" media="screen" >
 	<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
 	<title>Login - Screeps private server list</title>
@@ -108,7 +108,7 @@ if ($flash) {
 
 
 
-	<div class="footer">Dodoslav Novák | screeps@dodoslav.eu | PHP & MySQL | 2019</div>
+	<div class="footer"><?= site_footer() ?></div>
 </div>
 </body>
 </html>

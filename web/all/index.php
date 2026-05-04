@@ -5,6 +5,7 @@ date_default_timezone_set("Europe/Bratislava");
 
 require_once __DIR__ . '/../../lib/database.php';
 require_once __DIR__ . '/../../lib/security.php';
+require_once __DIR__ . '/../../lib/helpers.php';
 
 $pdo = db_connect();
 
@@ -21,7 +22,7 @@ if (empty($_SESSION['account'])) {
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
 	<meta name="description" content="screeps priavte community server list" >
 	<meta name="keywords" content="screeps private community server list game" >
-	<meta name="author" content="Dodoslav Novák" >
+	<meta name="author" content="<?= config('site.author') ?>" >
 	<link rel="stylesheet" type="text/css" href="/default.css" media="screen" >
 	<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
 	<title>All servers - Screeps private server list</title>
@@ -87,7 +88,7 @@ while ($row = $stmt->fetch()) {
 }
 ?>
 	</table>
-	<div class="footer">Dodoslav Novák | screeps@dodoslav.eu | PHP & MySQL | 2019 | Timezone Europe/Bratislava</div>
+	<div class="footer"><?= site_footer() ?></div>
 </div>
 
 </body>

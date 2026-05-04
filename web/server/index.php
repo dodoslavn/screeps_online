@@ -51,7 +51,7 @@ if (!$serverInfo) {
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
 	<meta name="description" content="<?= escape_html("screeps private server info " . $server) ?>" >
 	<meta name="keywords" content="screeps private community server list game " >
-	<meta name="author" content="Dodoslav Novák" >
+	<meta name="author" content="<?= config('site.author') ?>" >
 	<link rel="stylesheet" type="text/css" href="/default.css" media="screen" >
 	<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
 	<title><?= escape_html($server) ?> - Screeps private server information</title>
@@ -138,7 +138,7 @@ if (empty($description)) {
 	<h3>Description:</h3>
 	<p><?= escape_html($description) ?></p>
 
-	<div class="footer">Dodoslav Novák | screeps@dodoslav.eu | PHP & MySQL | 2019 | Timezone Europe/Bratislava</div>
+	<div class="footer"><?= site_footer() ?></div>
 </div>
 
 </body>

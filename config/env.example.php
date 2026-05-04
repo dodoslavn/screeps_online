@@ -20,7 +20,25 @@ return [
     // Application Settings
     'app' => [
         'url' => 'https://screeps.dodoslav.eu',
+        'name' => 'Screeps.dodoslav.eu',
         'timezone' => 'Europe/Bratislava',
+    ],
+
+    // Site Information
+    'site' => [
+        'author' => 'Dodoslav Novák',
+        'email' => 'screeps@dodoslav.eu',
+        'year' => '2019',
+    ],
+
+    // Mail Configuration (optional - for future features)
+    'mail' => [
+        'host' => 'smtp.dodoslav.eu',
+        'port' => 587,
+        'username' => 'screeps@dodoslav.eu',
+        'password' => 'your_mail_password',
+        'from_email' => 'screeps@dodoslav.eu',
+        'from_name' => 'Screeps Server List',
     ],
 
     // Session Configuration

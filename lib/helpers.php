@@ -6,6 +6,47 @@
  */
 
 /**
+ * Get configuration value
+ *
+ * @param string $key Dot notation key (e.g., 'site.author')
+ * @param mixed $default Default value if not found
+ * @return mixed
+ */
+function config($key, $default = null) {
+    static $config = null;
+
+    if ($config === null) {
+        $config = require __DIR__ . '/../config/env.php';
+    }
+
+    $keys = explode('.', $key);
+    $value = $config;
+
+    foreach ($keys as $k) {
+        if (!isset($value[$k])) {
+            return $default;
+        }
+        $value = $value[$k];
+    }
+
+    return $value;
+}
+
+/**
+ * Generate site footer HTML
+ *
+ * @return string
+ */
+function site_footer() {
+    $author = config('site.author', 'Anonymous');
+    $email = config('site.email', '');
+    $year = config('site.year', date('Y'));
+    $timezone = config('app.timezone', 'UTC');
+
+    return escape_html($author) . ' | ' . escape_html($email) . ' | PHP & MySQL | ' . escape_html($year) . ' | Timezone ' . escape_html($timezone);
+}
+
+/**
  * Redirect with optional flash message
  *
  * @param string $url

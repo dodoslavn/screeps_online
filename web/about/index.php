@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+require_once __DIR__ . '/../lib/helpers.php';
+require_once __DIR__ . '/../lib/security.php';
+
 // Set account link
 if (empty($_SESSION['account'])) {
     $account = '<a href="/account/login">Log in</a>';
@@ -14,7 +17,7 @@ if (empty($_SESSION['account'])) {
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
 	<meta name="description" content="About screeps.dodoslav.eu community private server list" >
 	<meta name="keywords" content="screeps private server community about" >
-	<meta name="author" content="Dodoslav Novák" >
+	<meta name="author" content="<?= config('site.author') ?>" >
 	<link rel="stylesheet" type="text/css" href="/default.css" media="screen" >
 	<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
 	<title>About - Screeps private server list</title>
@@ -63,10 +66,10 @@ if (empty($_SESSION['account'])) {
 
 	<h3>Contact:</h3>
 	<p>
-	    For questions or issues, contact: screeps@dodoslav.eu
+	    For questions or issues, contact: <?= escape_html(config('site.email')) ?>
 	</p>
 
-	<div class="footer">Dodoslav Novák | screeps@dodoslav.eu | PHP & MySQL | 2019</div>
+	<div class="footer"><?= site_footer() ?></div>
 </div>
 </body>
 </html>
