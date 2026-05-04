@@ -56,7 +56,7 @@ if (empty($_SESSION['account'])) {
 	<meta name="description" content="Add Screeps private community server into public list" >
 	<meta name="keywords" content="screeps private server community add server" >
 	<meta name="author" content="dodoslavn" >
-	<link rel="stylesheet" type="text/css" href="/default.css?v=20260504154927" media="screen" >
+	<link rel="stylesheet" type="text/css" href="/default.css?v=20260504161038" media="screen" >
 	<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
 	<title>Add Screeps server - Screeps private server list</title>
 </head>
