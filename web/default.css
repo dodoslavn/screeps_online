@@ -12,20 +12,21 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     line-height: 1.6;
     min-height: 100vh;
+    font-size: 16px;
 }
 
 /* Header */
 .header {
     background: linear-gradient(180deg, #000000 0%, #1a1a1a 100%);
     border-bottom: 2px solid #ffe799;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.5);
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
 .head {
-    max-width: 1200px;
+    max-width: 75rem;
     margin: 0 auto;
     padding: 1.5rem 2rem;
     display: flex;
@@ -67,7 +68,7 @@ body {
 
 /* Container */
 .container {
-    max-width: 1200px;
+    max-width: 75rem;
     margin: 0 auto;
     padding: 2rem;
 }
@@ -131,7 +132,7 @@ a.server {
     text-decoration: none;
     font-weight: 600;
     padding: 0.3rem 0.8rem;
-    border-radius: 4px;
+    border-radius: 0.25rem;
     background: rgba(255, 231, 153, 0.1);
     transition: all 0.3s ease;
 }
@@ -139,7 +140,7 @@ a.server {
 a.server:hover {
     background: rgba(255, 231, 153, 0.2);
     transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(255, 231, 153, 0.3);
+    box-shadow: 0 0.125rem 0.5rem rgba(255, 231, 153, 0.3);
 }
 
 /* Server List Table */
@@ -148,8 +149,8 @@ a.server:hover {
     border-collapse: separate;
     border-spacing: 0;
     margin: 2rem 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    border-radius: 8px;
+    box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.3);
+    border-radius: 0.5rem;
     overflow: hidden;
 }
 
@@ -164,7 +165,7 @@ a.server:hover {
     color: #ffe799;
     text-transform: uppercase;
     font-size: 0.85rem;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.03125rem;
     border-bottom: 2px solid #ffe799;
 }
 
@@ -208,7 +209,7 @@ form textarea {
     padding: 0.8rem;
     background: #2a2a2a;
     border: 2px solid #3a3a3a;
-    border-radius: 6px;
+    border-radius: 0.375rem;
     color: #e0e0e0;
     font-size: 1rem;
     transition: all 0.3s ease;
@@ -221,18 +222,18 @@ form textarea:focus {
     outline: none;
     border-color: #ffe799;
     background: #333;
-    box-shadow: 0 0 0 3px rgba(255, 231, 153, 0.1);
+    box-shadow: 0 0 0 0.1875rem rgba(255, 231, 153, 0.1);
 }
 
 /* Add Server Form - Specific styles AFTER general form styles */
 .add-server-form {
-    max-width: 500px;
+    max-width: 31.25rem;
     margin: 2rem auto;
     text-align: center;
 }
 
 .add-server-form .server-input {
-    width: 400px !important;
+    width: 25rem !important;
     max-width: 100% !important;
     margin: 1rem auto !important;
     text-align: center !important;
@@ -242,13 +243,13 @@ form textarea:focus {
 
 .add-server-form input[type="submit"] {
     margin-top: 1rem;
-    min-width: 200px;
+    min-width: 12.5rem;
 }
 
 .add-server-form code {
     background: #2a2a2a;
     padding: 0.2rem 0.5rem;
-    border-radius: 4px;
+    border-radius: 0.25rem;
     color: #ffe799;
     font-family: 'Courier New', monospace;
 }
@@ -259,28 +260,28 @@ form button {
     background: linear-gradient(135deg, #ffe799 0%, #ffd966 100%);
     color: #1a1a1a;
     border: none;
-    border-radius: 6px;
+    border-radius: 0.375rem;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(255, 231, 153, 0.3);
+    box-shadow: 0 0.125rem 0.5rem rgba(255, 231, 153, 0.3);
 }
 
 form input[type="submit"]:hover,
 form button:hover {
     background: linear-gradient(135deg, #ffd966 0%, #ffe799 100%);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 231, 153, 0.4);
+    box-shadow: 0 0.25rem 0.75rem rgba(255, 231, 153, 0.4);
 }
 
 .login {
-    max-width: 500px;
+    max-width: 31.25rem;
     margin: 2rem auto;
     background: #2a2a2a;
     padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    border-radius: 0.75rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4);
 }
 
 .login td {
@@ -292,7 +293,7 @@ form button:hover {
 .login input[type="text"],
 .login input[type="password"],
 .login input[type="email"] {
-    width: 400px;
+    width: 25rem;
     max-width: 100%;
     margin-top: 0.3rem;
 }
@@ -301,10 +302,10 @@ form button:hover {
 div[style*="background-color: #aa1111"],
 div[style*="background-color: #11aa11"] {
     padding: 1rem !important;
-    border-radius: 8px !important;
+    border-radius: 0.5rem !important;
     margin: 1rem auto !important;
     border: none !important;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3) !important;
     font-weight: 500 !important;
 }
 
@@ -319,7 +320,7 @@ div[style*="background-color: #11aa11"] {
 }
 
 /* Responsive Design */
-@media (max-width: 1200px) {
+@media (max-width: 75rem) {
     .head {
         padding: 1.5rem 1rem;
     }
@@ -329,7 +330,7 @@ div[style*="background-color: #11aa11"] {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
     .head {
         flex-direction: column;
         gap: 1rem;
@@ -355,7 +356,7 @@ div[style*="background-color: #11aa11"] {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 30rem) {
     .panel {
         gap: 0.5rem;
     }
