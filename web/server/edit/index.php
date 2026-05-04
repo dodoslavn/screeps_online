@@ -89,7 +89,7 @@ $account = '<a href="/account">Account</a>';
 	<meta name="description" content="Edit decription of screeps private server" >
 	<meta name="keywords" content="screeps private community server <?= escape_html($server) ?> game" >
 	<meta name="author" content="dodoslavn" >
-	<link rel="stylesheet" type="text/css" href="/default.css" media="screen" >
+	<link rel="stylesheet" type="text/css" href="/default.css?v=20260504154927" media="screen" >
 	<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
 	<title><?= escape_html($server) ?> - edit Screeps private server</title>
 </head>

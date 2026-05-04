@@ -26,7 +26,7 @@ $flash = get_flash();
 	<meta name="description" content="screeps priavte community server list" >
 	<meta name="keywords" content="screeps private community server list game" >
 	<meta name="author" content="dodoslavn" >
-	<link rel="stylesheet" type="text/css" href="default.css" media="screen" >
+	<link rel="stylesheet" type="text/css" href="default.css?v=20260504154927" media="screen" >
 	<link rel="shortcut icon" type="image/png" href="favicon.png"/>
 	<title>Screeps private server list</title>
 </head>
