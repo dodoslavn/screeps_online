@@ -87,7 +87,7 @@ while ($row = $stmt->fetch()) {
 }
 ?>
 	</table>
-	<div class="footer">Dodoslav Novák | screeps@fordo.sk | PHP & MySQL | 2019 | Timezone Europe/Bratislava</div>
+	<div class="footer">Dodoslav Novák | screeps@dodoslav.eu | PHP & MySQL | 2019 | Timezone Europe/Bratislava</div>
 </div>
 
 </body>

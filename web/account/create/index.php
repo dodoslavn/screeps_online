@@ -70,7 +70,7 @@ $account = '<a style="color: #ffe799;" href="/account" >Log in</a>';
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
-	<meta name="description" content="Create account screeps.online" >
+	<meta name="description" content="Create account screeps.dodoslav.eu" >
 	<meta name="keywords" content="screeps private server community create account" >
 	<meta name="author" content="Dodoslav Novák" >
 	<link rel="stylesheet" type="text/css" href="/default.css" media="screen" >
@@ -124,7 +124,7 @@ if (!empty($err)) {
     </table>
 </form>
 
-	<div class="footer">Dodoslav Novák | screeps@fordo.sk | PHP & MySQL | 2019</div>
+	<div class="footer">Dodoslav Novák | screeps@dodoslav.eu | PHP & MySQL | 2019</div>
 </div>
 </body>
 </html>

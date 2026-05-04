@@ -51,7 +51,7 @@ $flash = get_flash();
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
-	<meta name="description" content="Login into screeps.online" >
+	<meta name="description" content="Login into screeps.dodoslav.eu" >
 	<meta name="keywords" content="screeps private server community login" >
 	<meta name="author" content="Dodoslav Novák" >
 	<link rel="stylesheet" type="text/css" href="/default.css" media="screen" >
@@ -108,7 +108,7 @@ if ($flash) {
 
 
 
-	<div class="footer">Dodoslav Novák | screeps@fordo.sk | PHP & MySQL | 2019</div>
+	<div class="footer">Dodoslav Novák | screeps@dodoslav.eu | PHP & MySQL | 2019</div>
 </div>
 </body>
 </html>

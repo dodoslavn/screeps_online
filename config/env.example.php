@@ -19,7 +19,7 @@ return [
 
     // Application Settings
     'app' => [
-        'url' => 'https://screeps.online',
+        'url' => 'https://screeps.dodoslav.eu',
         'timezone' => 'Europe/Bratislava',
     ],
 

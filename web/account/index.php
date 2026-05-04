@@ -105,7 +105,7 @@ if (count($userServers) > 0) {
 	<br><br>
 	<a href="/account/logout">Log out</a>
 
-	<div class="footer">Dodoslav Novák | screeps@fordo.sk | PHP & MySQL | 2019</div>
+	<div class="footer">Dodoslav Novák | screeps@dodoslav.eu | PHP & MySQL | 2019</div>
 </div>
 </body>
 </html>

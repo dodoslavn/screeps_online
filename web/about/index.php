@@ -12,7 +12,7 @@ if (empty($_SESSION['account'])) {
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
-	<meta name="description" content="About screeps.online community private server list" >
+	<meta name="description" content="About screeps.dodoslav.eu community private server list" >
 	<meta name="keywords" content="screeps private server community about" >
 	<meta name="author" content="Dodoslav Novák" >
 	<link rel="stylesheet" type="text/css" href="/default.css" media="screen" >
@@ -41,9 +41,9 @@ if (empty($_SESSION['account'])) {
 	    Screeps is an open-source MMO RTS sandbox game for programmers, wherein the core mechanic is programming your units AI. You control your colony by writing JavaScript which operate 24/7 in the single persistent real-time world filled by other players on par with you.
 	</p>
 
-	<h3>What is screeps.online?</h3>
+	<h3>What is screeps.dodoslav.eu?</h3>
 	<p>
-        Screeps.online is a community-driven directory for private Screeps servers. It helps players discover new servers and allows server owners to claim and manage their listings.
+        Screeps.dodoslav.eu is a community-driven directory for private Screeps servers. It helps players discover new servers and allows server owners to claim and manage their listings.
 	</p>
 
     <h3>Features:</h3>
@@ -63,10 +63,10 @@ if (empty($_SESSION['account'])) {
 
 	<h3>Contact:</h3>
 	<p>
-	    For questions or issues, contact: screeps@fordo.sk
+	    For questions or issues, contact: screeps@dodoslav.eu
 	</p>
 
-	<div class="footer">Dodoslav Novák | screeps@fordo.sk | PHP & MySQL | 2019</div>
+	<div class="footer">Dodoslav Novák | screeps@dodoslav.eu | PHP & MySQL | 2019</div>
 </div>
 </body>
 </html>

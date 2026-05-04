@@ -92,7 +92,7 @@ if (!empty($msg)) {
 		<center>http://<input type="text" value="screeps.com:21025" name="server">/
 		<input type="submit" value="Add server"> </center>
 	</form>
-	<div class="footer">Dodoslav Novák | screeps@fordo.sk | PHP & MySQL | 2019 </div>
+	<div class="footer">Dodoslav Novák | screeps@dodoslav.eu | PHP & MySQL | 2019 </div>
 </div>
 
 
