@@ -8,15 +8,17 @@ User=www-data
 Group=www-data
 WorkingDirectory=/home/dodanek/screeps_online/backend
 ExecStart=/usr/bin/php /home/dodanek/screeps_online/backend/scan.php
-StandardOutput=append:/home/dodanek/screeps_online/storage/logs/scan.log
-StandardError=append:/home/dodanek/screeps_online/storage/logs/scan.log
+
+# Use journald for logging (simpler than file logging)
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=screeps-scanner
 
 # Security hardening
 NoNewPrivileges=true
 PrivateTmp=true
 ProtectSystem=strict
 ProtectHome=true
-ReadWritePaths=/home/dodanek/screeps_online/storage/logs
 
 [Install]
 WantedBy=multi-user.target

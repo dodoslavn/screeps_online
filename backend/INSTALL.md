@@ -10,6 +10,7 @@ Modern, reliable, with better logging and control.
 
 ```bash
 # Copy service files to systemd directory
+# Note: You can rename to avoid conflicts (e.g., custom-screeps_scanner.service)
 sudo cp backend/screeps-scanner.service /etc/systemd/system/
 sudo cp backend/screeps-scanner.timer /etc/systemd/system/
 
@@ -18,12 +19,12 @@ sudo nano /etc/systemd/system/screeps-scanner.service
 
 # Update these lines:
 #   User=www-data              # Change to your web user
-#   Group=www-data             # Change to your web group
-#   WorkingDirectory=/home/dodanek/screeps_online/backend
-#   ExecStart=/usr/bin/php /home/dodanek/screeps_online/backend/scan.php
-#   StandardOutput=append:/home/dodanek/screeps_online/storage/logs/scan.log
-#   StandardError=append:/home/dodanek/screeps_online/storage/logs/scan.log
-#   ReadWritePaths=/home/dodanek/screeps_online/storage/logs
+#   Group=www-data             # Change to your web group  
+#   WorkingDirectory=/path/to/your/screeps_online/backend
+#   ExecStart=/usr/bin/php /path/to/your/screeps_online/backend/scan.php
+
+# The service now uses journald for logging (no need to create log files)
+# Logs viewable with: journalctl -u screeps-scanner.service
 
 # Reload systemd
 sudo systemctl daemon-reload
